@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+// @ts-ignore
 import MapView, { Geojson } from 'react-native-maps';
 
 const GeojsonMap = () => {

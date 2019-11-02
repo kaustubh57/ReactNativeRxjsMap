@@ -6,12 +6,14 @@ import PolylineMap from '../components/PolylineMap';
 import GeojsonMap from '../components/GeojsonMap';
 import CircleMap from '../components/CircleMap';
 import PolygonMap from '../components/PolygonMap';
+import CalloutMap from '../components/CalloutMap';
+import Callout2Map from '../components/Callout2Map';
 
 class MapScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <SimpleMap />
+        <Callout2Map />
       </View>
     );
   }
