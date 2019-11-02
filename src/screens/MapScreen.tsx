@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { StyleSheet, View, YellowBox } from 'react-native';
+import SimpleMap from '../components/SimpleMap';
+import MarkerMap from '../components/MarkerMap';
+import PolylineMap from '../components/PolylineMap';
+import GeojsonMap from '../components/GeojsonMap';
+import CircleMap from '../components/CircleMap';
+import PolygonMap from '../components/PolygonMap';
 
 class MapScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <MapView
-          style={styles.map}
-          region={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
-          }}
-        >
-        </MapView>
+        <SimpleMap />
       </View>
     );
   }
@@ -28,8 +24,5 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'flex-end',
     alignItems: 'center',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
+  }
 });
