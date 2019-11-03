@@ -72,17 +72,13 @@ class CustomAnimatedMarkersAndRegionExample extends Component {
     };
   }
 
-  // componentWillMount() {
-  //   this.index = 0;
-  //   this.animation = new Animated.Value(0);
-  // }
-
   componentDidMount() {
     const {markers, region}: any = this.state;
 
     // We should detect when scrolling has stopped then animate
     // We should just debounce the event listener here
     this.animation.addListener(({value}) => {
+      console.log('### value >>> ' + value);
       let index = Math.floor(value / CARD_WIDTH + 0.3); // animate 30% away from landing on the next item
       if (index >= markers.length) {
         index = markers.length - 1;
@@ -151,7 +147,11 @@ class CustomAnimatedMarkersAndRegionExample extends Component {
             };
 
             return (
-              <Marker key={index} coordinate={marker.coordinate}>
+              <Marker key={index}
+                      coordinate={marker.coordinate}
+                      title={marker.title}
+                      description={marker.description}
+              >
                 <Animated.View style={[styles.markerWrap, opacityStyle]}>
                   <Animated.View style={[styles.ring, scaleStyle]}/>
                   <View style={styles.marker}/>

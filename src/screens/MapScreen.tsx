@@ -9,12 +9,13 @@ import PolygonMap from '../components/PolygonMap';
 import CalloutMap from '../components/CalloutMap';
 import Callout2Map from '../components/Callout2Map';
 import OverlayMap from '../components/OverlayMap';
+import EventListener from '../components/EventListener';
 
 class MapScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <OverlayMap />
+        <EventListener />
       </View>
     );
   }
