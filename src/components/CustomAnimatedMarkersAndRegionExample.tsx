@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { Animated, Dimensions, Image, StyleSheet, Text, View, } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Circle, Marker } from 'react-native-maps';
 
 const Images = [
   {uri: "https://i.imgur.com/sNam9iJ.jpg"},
@@ -78,7 +78,6 @@ class CustomAnimatedMarkersAndRegionExample extends Component {
     // We should detect when scrolling has stopped then animate
     // We should just debounce the event listener here
     this.animation.addListener(({value}) => {
-      console.log('### value >>> ' + value);
       let index = Math.floor(value / CARD_WIDTH + 0.3); // animate 30% away from landing on the next item
       if (index >= markers.length) {
         index = markers.length - 1;
@@ -104,6 +103,23 @@ class CustomAnimatedMarkersAndRegionExample extends Component {
       }, 10);
     });
   }
+
+  updateMarker = (index: number) => {
+    clearTimeout(this.regionTimeout);
+    if (this.index !== index) {
+      const {markers, region}: any = this.state;
+      this.index = index;
+      const {coordinate} = markers[index];
+      this.map.animateToRegion(
+        {
+          ...coordinate,
+          latitudeDelta: region.latitudeDelta,
+          longitudeDelta: region.longitudeDelta,
+        },
+        350
+      );
+    }
+  };
 
   render() {
     const {markers, region}: any = this.state;
@@ -147,16 +163,27 @@ class CustomAnimatedMarkersAndRegionExample extends Component {
             };
 
             return (
-              <Marker key={index}
-                      coordinate={marker.coordinate}
-                      title={marker.title}
-                      description={marker.description}
-              >
-                <Animated.View style={[styles.markerWrap, opacityStyle]}>
-                  <Animated.View style={[styles.ring, scaleStyle]}/>
-                  <View style={styles.marker}/>
-                </Animated.View>
-              </Marker>
+              <>
+                <Marker key={'marker-'+index}
+                        coordinate={marker.coordinate}
+                        title={marker.title}
+                        description={marker.description}
+                        onPress={() => this.updateMarker(index)}
+                >
+                  <Animated.View style={[styles.markerWrap, opacityStyle]}>
+                    <Animated.View style={[styles.ring, scaleStyle]}/>
+                    <View style={styles.marker}/>
+                  </Animated.View>
+                </Marker>
+                <Circle key={'circle-'+index}
+                        center={marker.coordinate}
+                        radius={200}
+                        fillColor="rgba(255, 255, 255, 0.6)"
+                        strokeColor="rgba(0,0,0,0.5)"
+                        zIndex={2}
+                        strokeWidth={2}
+                />
+              </>
             );
           })}
         </MapView>
