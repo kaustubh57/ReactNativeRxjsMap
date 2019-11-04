@@ -10,12 +10,16 @@ import CalloutMap from '../components/CalloutMap';
 import Callout2Map from '../components/Callout2Map';
 import OverlayMap from '../components/OverlayMap';
 import EventListener from '../components/EventListener';
+import AnimatedMarkersMap from '../components/AnimatedMarkersMap';
+import AnimatedNavigationMap from '../components/AnimatedNavigationMap';
+import Callout3Map from '../components/Callout3Map';
+import AnimatedViewMap from '../components/AnimatedViewMap';
 
 class MapScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <CircleMap />
+        <Callout3Map/>
       </View>
     );
   }

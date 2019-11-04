@@ -97,7 +97,7 @@ class CustomAnimatedMarkersAndRegionExample extends Component {
               latitudeDelta: region.latitudeDelta,
               longitudeDelta: region.longitudeDelta,
             },
-            350
+            2000
           );
         }
       }, 10);
@@ -163,7 +163,7 @@ class CustomAnimatedMarkersAndRegionExample extends Component {
             };
 
             return (
-              <>
+              <View key={index}>
                 <Marker key={'marker-'+index}
                         coordinate={marker.coordinate}
                         title={marker.title}
@@ -183,7 +183,7 @@ class CustomAnimatedMarkersAndRegionExample extends Component {
                         zIndex={2}
                         strokeWidth={2}
                 />
-              </>
+              </View>
             );
           })}
         </MapView>

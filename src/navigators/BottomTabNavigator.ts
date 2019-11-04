@@ -11,7 +11,7 @@ const BottomTabNavigator = createMaterialBottomTabNavigator(
     MapExample: {screen: MapExampleScreen}
   },
   {
-    initialRouteName: 'MapExample'
+    initialRouteName: 'Map'
   },
 );
 
